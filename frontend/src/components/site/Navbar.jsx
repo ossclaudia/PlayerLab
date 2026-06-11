@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/l8zctd3g_Logo.png";
+import Logo from "./Logo";
 
 const links = [
   { href: "#sobre", label: "A Academia" },
@@ -32,10 +31,10 @@ export default function Navbar({ onJoinClick }) {
       }`}
       data-testid="navbar"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-24">
-        <a href="#hero" className="flex flex-col items-center leading-none" data-testid="navbar-logo">
-          <img src={LOGO_URL} alt="PlayerLab" className="w-14 h-14 object-contain" />
-          <span className="font-heading text-[11px] font-black tracking-[0.25em] uppercase text-navy -mt-1">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-20">
+        <a href="#hero" className="flex items-center gap-3" data-testid="navbar-logo">
+          <Logo size={48} color="#0E152C" />
+          <span className="font-heading text-2xl md:text-3xl font-black tracking-tight uppercase text-navy leading-none">
             Player<span className="text-gold-600">Lab</span>
           </span>
         </a>

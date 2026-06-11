@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, ArrowRight, MapPin } from "lucide-react";
-
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/l8zctd3g_Logo.png";
+import Logo from "./Logo";
 
 export default function Contact({ onJoinClick }) {
   return (
@@ -55,9 +54,9 @@ export default function Contact({ onJoinClick }) {
         {/* Contact grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
           <div className="md:col-span-5">
-            <div className="flex flex-col items-start gap-3 mb-6">
-              <img src={LOGO_URL} alt="PlayerLab" className="w-24 h-24 object-contain" />
-              <span className="font-heading text-3xl font-black tracking-tight uppercase">
+            <div className="flex items-center gap-4 mb-6">
+              <Logo size={88} color="#FFFFFF" />
+              <span className="font-heading text-4xl md:text-5xl font-black tracking-tight uppercase leading-none">
                 Player<span className="text-gold">Lab</span>
               </span>
             </div>

@@ -28,7 +28,7 @@ export default function Location() {
             </h2>
 
             <p className="mt-8 text-navy/70 font-body text-base md:text-lg leading-relaxed max-w-md">
-              Instalações modernas com relva natural e sintética, espaços
+              Instalações modernas com campos de relva sintética, espaços
               técnicos dedicados e ambiente preparado para desenvolvimento
               de alto rendimento.
             </p>
