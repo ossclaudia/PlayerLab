@@ -1,63 +1,17 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Loader2 } from "lucide-react";
+import { X, ExternalLink, Loader2 } from "lucide-react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const labOptions = [
-  { value: "technique", label: "Technique" },
-  { value: "performance", label: "Performance" },
-  { value: "position", label: "Position" },
-  { value: "all", label: "Todos" },
-];
-
-const initialForm = {
-  player_name: "",
-  age: "",
-  parent_name: "",
-  email: "",
-  phone: "",
-  lab_interest: "all",
-  position: "",
-  message: "",
-};
+const FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdTiFRKrLJNT8IU8JmhUnytOpmuP0_aRSu1Q2o1jbiEfp8ljg/viewform";
+const FORM_EMBED_URL = `${FORM_URL}?embedded=true`;
 
 export default function RegistrationDialog({ open, onClose }) {
-  const [form, setForm] = useState(initialForm);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = React.useState(true);
 
-  const update = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-
-  const submit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-      const payload = { ...form, age: parseInt(form.age, 10) };
-      if (!payload.parent_name) delete payload.parent_name;
-      if (!payload.position) delete payload.position;
-      if (!payload.message) delete payload.message;
-      await axios.post(`${API}/registrations`, payload);
-      setSuccess(true);
-    } catch (err) {
-      const detail = err?.response?.data?.detail;
-      const msg = typeof detail === "string" ? detail : Array.isArray(detail) ? detail.map(d => d.msg).join(" · ") : "Erro ao enviar inscrição. Tenta novamente.";
-      setError(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleClose = () => {
-    setForm(initialForm);
-    setSuccess(false);
-    setError("");
-    onClose();
-  };
+  React.useEffect(() => {
+    if (open) setLoading(true);
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -66,173 +20,77 @@ export default function RegistrationDialog({ open, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-navy/60 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
-          onClick={handleClose}
+          className="fixed inset-0 z-[100] bg-navy/70 backdrop-blur-md flex items-center justify-center p-3 md:p-6 overflow-y-auto"
+          onClick={onClose}
           data-testid="registration-overlay"
         >
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.98 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl bg-white border border-mist shadow-2xl max-h-[90vh] overflow-y-auto my-8"
+            className="relative w-full max-w-3xl bg-cream-100 border border-mist shadow-2xl max-h-[92vh] flex flex-col"
             data-testid="registration-dialog"
           >
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-navy hover:bg-cream-200 transition-colors z-10"
-              data-testid="registration-close-btn"
-              aria-label="fechar"
-            >
-              <X size={22} />
-            </button>
-
-            {success ? (
-              <div className="p-12 text-center" data-testid="registration-success">
-                <div className="w-16 h-16 bg-navy mx-auto flex items-center justify-center mb-6">
-                  <Check size={32} className="text-gold" strokeWidth={3} />
-                </div>
-                <h3 className="font-heading text-4xl font-black uppercase tracking-tight text-navy">
-                  Inscrição enviada!
-                </h3>
-                <p className="mt-4 text-navy/60 font-body max-w-md mx-auto">
-                  Recebemos a tua inscrição. Vamos entrar em contacto nas próximas
-                  48h para agendar a tua avaliação inicial.
-                </p>
-                <button
-                  onClick={handleClose}
-                  className="mt-8 bg-navy text-white px-8 py-4 font-heading text-base uppercase tracking-widest hover:bg-navy-800 transition-all"
-                  data-testid="registration-success-close-btn"
-                >
-                  Fechar
-                </button>
-              </div>
-            ) : (
-              <div className="p-8 md:p-10">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 md:px-8 py-5 border-b border-mist bg-white">
+              <div>
                 <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-gold-600">
                   / Inscrição
                 </span>
-                <h3 className="mt-3 font-heading text-3xl md:text-4xl font-black uppercase tracking-tight text-navy">
+                <h3 className="mt-1 font-heading text-2xl md:text-3xl font-black uppercase tracking-tight text-navy">
                   Junta-te ao <span className="text-gold-gradient">PlayerLab.</span>
                 </h3>
-                <p className="mt-3 text-navy/60 text-sm font-body">
-                  Preenche o formulário — entraremos em contacto em 48h.
-                </p>
-
-                <form onSubmit={submit} className="mt-8 space-y-5" data-testid="registration-form">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Field label="Nome do Jogador *">
-                      <input required type="text" value={form.player_name}
-                        onChange={(e) => update("player_name", e.target.value)}
-                        className="input" placeholder="João Silva" data-testid="form-player-name" />
-                    </Field>
-                    <Field label="Idade *">
-                      <input required type="number" min="6" max="25" value={form.age}
-                        onChange={(e) => update("age", e.target.value)}
-                        className="input" placeholder="12" data-testid="form-age" />
-                    </Field>
-                  </div>
-
-                  <Field label="Nome do Encarregado de Educação">
-                    <input type="text" value={form.parent_name}
-                      onChange={(e) => update("parent_name", e.target.value)}
-                      className="input" placeholder="Opcional" data-testid="form-parent-name" />
-                  </Field>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Field label="Email *">
-                      <input required type="email" value={form.email}
-                        onChange={(e) => update("email", e.target.value)}
-                        className="input" placeholder="email@exemplo.pt" data-testid="form-email" />
-                    </Field>
-                    <Field label="Telefone *">
-                      <input required type="tel" value={form.phone}
-                        onChange={(e) => update("phone", e.target.value)}
-                        className="input" placeholder="+351 ..." data-testid="form-phone" />
-                    </Field>
-                  </div>
-
-                  <Field label="Lab de Interesse *">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                      {labOptions.map((opt) => (
-                        <button type="button" key={opt.value}
-                          onClick={() => update("lab_interest", opt.value)}
-                          data-testid={`form-lab-${opt.value}`}
-                          className={`px-3 py-3 text-xs uppercase tracking-wider font-heading border transition-all ${
-                            form.lab_interest === opt.value
-                              ? "bg-navy border-navy text-white"
-                              : "bg-white border-mist text-navy hover:border-navy/50"
-                          }`}>
-                          {opt.label}
-                        </button>
-                      ))}
-                    </div>
-                  </Field>
-
-                  <Field label="Posição (opcional)">
-                    <input type="text" value={form.position}
-                      onChange={(e) => update("position", e.target.value)}
-                      className="input"
-                      placeholder="Guarda-redes / Defesa / Médio / Avançado"
-                      data-testid="form-position" />
-                  </Field>
-
-                  <Field label="Mensagem (opcional)">
-                    <textarea rows={3} value={form.message}
-                      onChange={(e) => update("message", e.target.value)}
-                      className="input resize-none"
-                      placeholder="Conta-nos um pouco sobre o jogador..."
-                      data-testid="form-message" />
-                  </Field>
-
-                  {error && (
-                    <div className="text-sm text-red-700 border border-red-300 bg-red-50 px-4 py-3" data-testid="form-error">
-                      {error}
-                    </div>
-                  )}
-
-                  <button type="submit" disabled={loading} data-testid="form-submit-btn"
-                    className="w-full inline-flex items-center justify-center gap-3 bg-navy text-white px-6 py-5 font-heading text-lg uppercase tracking-widest hover:bg-navy-800 hover:shadow-xl transition-all disabled:opacity-50">
-                    {loading ? (<><Loader2 size={20} className="animate-spin" /> A enviar...</>) : "Enviar Inscrição"}
-                  </button>
-                </form>
               </div>
-            )}
+              <button
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center text-navy hover:bg-cream-200 transition-colors"
+                data-testid="registration-close-btn"
+                aria-label="fechar"
+              >
+                <X size={22} />
+              </button>
+            </div>
 
-            <style>{`
-              .input {
-                width: 100%;
-                background: #FBFAF7;
-                border: 1px solid #D7DAE3;
-                color: #0E152C;
-                padding: 14px 16px;
-                font-family: 'Manrope', sans-serif;
-                font-size: 14px;
-                outline: none;
-                transition: all 0.2s;
-              }
-              .input::placeholder { color: #A8ADBF; }
-              .input:focus {
-                border-color: #0E152C;
-                box-shadow: 0 0 0 1px #0E152C;
-                background: #ffffff;
-              }
-            `}</style>
+            {/* Iframe wrapper */}
+            <div className="relative flex-1 min-h-[60vh] bg-white">
+              {loading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 bg-cream-100">
+                  <Loader2 size={28} className="animate-spin text-navy" />
+                  <span className="text-xs uppercase tracking-[0.25em] text-navy/60 font-bold">
+                    A carregar formulário...
+                  </span>
+                </div>
+              )}
+              <iframe
+                title="Formulário de inscrição PlayerLab"
+                src={FORM_EMBED_URL}
+                className="w-full h-[70vh] md:h-[75vh] border-0"
+                onLoad={() => setLoading(false)}
+                data-testid="registration-form-iframe"
+              />
+            </div>
+
+            {/* Footer */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-6 md:px-8 py-4 border-t border-mist bg-cream-100">
+              <span className="text-[11px] uppercase tracking-[0.25em] text-navy/50 font-bold">
+                Os dados são recebidos diretamente pela equipa PlayerLab.
+              </span>
+              <a
+                href={FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-navy hover:text-gold-600 transition-colors"
+                data-testid="registration-open-external"
+              >
+                Abrir em nova janela
+                <ExternalLink size={14} />
+              </a>
+            </div>
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
-  );
-}
-
-function Field({ label, children }) {
-  return (
-    <label className="block">
-      <span className="block text-[10px] font-bold uppercase tracking-[0.25em] text-navy/50 mb-2">
-        {label}
-      </span>
-      {children}
-    </label>
   );
 }

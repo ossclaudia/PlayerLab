@@ -42,7 +42,7 @@ export default function Location() {
               <Row
                 icon={Clock}
                 title="Horários"
-                value="Seg-Sex · 17h-21h  ·  Sáb · 09h-13h"
+                value="Seg-Dom · 9h-19h"
               />
             </div>
 

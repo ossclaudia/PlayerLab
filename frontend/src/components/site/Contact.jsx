@@ -11,7 +11,6 @@ export default function Contact({ onJoinClick }) {
       className="relative bg-navy text-white overflow-hidden"
       data-testid="contact-section"
     >
-      {/* gold ambient blobs */}
       <div className="absolute -top-32 -left-20 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -right-20 w-96 h-96 bg-navy-700/40 rounded-full blur-3xl pointer-events-none" />
 
@@ -30,13 +29,9 @@ export default function Contact({ onJoinClick }) {
             </span>
             <h2 className="mt-5 font-heading font-black uppercase leading-[0.9] tracking-tighter text-balance"
                 style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
-              Pronto para <br />
-              <span className="text-gold-gradient">elevar o teu jogo?</span>
+              Descobre os <span className="text-gold-gradient">nossos packs</span> e <br />
+              inscreve-te agora!
             </h2>
-            <p className="mt-6 text-white/70 text-base md:text-lg max-w-xl font-body leading-relaxed">
-              Inscreve-te e em 48h entramos em contacto para agendar uma
-              avaliação inicial sem compromisso.
-            </p>
           </motion.div>
 
           <motion.div
@@ -59,12 +54,9 @@ export default function Contact({ onJoinClick }) {
 
         {/* Contact grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
-          {/* Brand */}
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-white/10 flex items-center justify-center backdrop-blur-md">
-                <img src={LOGO_URL} alt="PlayerLab" className="w-10 h-10 object-contain" />
-              </div>
+            <div className="flex flex-col items-start gap-3 mb-6">
+              <img src={LOGO_URL} alt="PlayerLab" className="w-24 h-24 object-contain" />
               <span className="font-heading text-3xl font-black tracking-tight uppercase">
                 Player<span className="text-gold">Lab</span>
               </span>
@@ -75,19 +67,18 @@ export default function Contact({ onJoinClick }) {
             </p>
           </div>
 
-          {/* Navegação */}
           <div className="md:col-span-3">
             <h4 className="font-heading text-sm uppercase tracking-[0.25em] text-gold mb-5">
               Navegação
             </h4>
             <ul className="space-y-3 font-body text-sm">
               <li><a href="#sobre" className="text-white/70 hover:text-white transition-colors">A Academia</a></li>
+              <li><a href="#staff" className="text-white/70 hover:text-white transition-colors">Staff</a></li>
               <li><a href="#labs" className="text-white/70 hover:text-white transition-colors">Os Labs</a></li>
               <li><a href="#localizacao" className="text-white/70 hover:text-white transition-colors">Localização</a></li>
             </ul>
           </div>
 
-          {/* Contactos */}
           <div className="md:col-span-4">
             <h4 className="font-heading text-sm uppercase tracking-[0.25em] text-gold mb-5">
               Contactos
@@ -99,20 +90,20 @@ export default function Contact({ onJoinClick }) {
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Mail size={16} className="text-gold shrink-0" />
-                <a href="mailto:geral@playerlab.pt" className="hover:text-white transition-colors">
-                  geral@playerlab.pt
+                <a href="mailto:playerlabacademy@gmail.com" className="hover:text-white transition-colors break-all">
+                  playerlabacademy@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Phone size={16} className="text-gold shrink-0" />
-                <a href="tel:+351910000000" className="hover:text-white transition-colors">
-                  +351 910 000 000
+                <a href="tel:+351918766314" className="hover:text-white transition-colors">
+                  +351 918 766 314
                 </a>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Instagram size={16} className="text-gold shrink-0" />
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  @playerlab.pt
+                <a href="https://instagram.com/playerlab" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  @playerlab
                 </a>
               </li>
             </ul>

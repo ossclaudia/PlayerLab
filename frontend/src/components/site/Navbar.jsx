@@ -6,6 +6,7 @@ const LOGO_URL = "https://customer-assets.emergentagent.com/job_develop-your-gam
 
 const links = [
   { href: "#sobre", label: "A Academia" },
+  { href: "#staff", label: "Staff" },
   { href: "#labs", label: "Os Labs" },
   { href: "#localizacao", label: "Localização" },
   { href: "#contactos", label: "Contactos" },
@@ -31,13 +32,11 @@ export default function Navbar({ onJoinClick }) {
       }`}
       data-testid="navbar"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-20">
-        <a href="#hero" className="flex items-center gap-3" data-testid="navbar-logo">
-          <div className="w-11 h-11 bg-navy flex items-center justify-center rounded-sm">
-            <img src={LOGO_URL} alt="PlayerLab" className="w-9 h-9 object-contain" />
-          </div>
-          <span className="font-heading text-2xl font-black tracking-tight uppercase text-navy hidden sm:inline">
-            Player<span className="text-gold">Lab</span>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-24">
+        <a href="#hero" className="flex flex-col items-center leading-none" data-testid="navbar-logo">
+          <img src={LOGO_URL} alt="PlayerLab" className="w-14 h-14 object-contain" />
+          <span className="font-heading text-[11px] font-black tracking-[0.25em] uppercase text-navy -mt-1">
+            Player<span className="text-gold-600">Lab</span>
           </span>
         </a>
 

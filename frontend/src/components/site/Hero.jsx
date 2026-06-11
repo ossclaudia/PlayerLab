@@ -1,27 +1,45 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/l8zctd3g_Logo.png";
-
-const FOOTBALL_IMG =
-  "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHBsYXllciUyMHNpbGhvdWV0dGUlMjBzdGFkaXVtJTIwbGlnaHRzJTIwZGFya3xlbnwwfHx8fDE3ODEwODI1OTJ8MA&ixlib=rb-4.1.0&q=85";
+const SLIDES = [
+  {
+    url: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80",
+    alt: "Estádio de futebol à noite",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80",
+    alt: "Jogador a chutar a bola",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1200&q=80",
+    alt: "Treino de futebol",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80",
+    alt: "Atletas em corrida",
+  },
+];
 
 export default function Hero({ onJoinClick }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 4500);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <section
       id="hero"
       className="relative min-h-screen w-full overflow-hidden bg-cream-100"
       data-testid="hero-section"
     >
-      {/* Decorative grid */}
       <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
-
-      {/* Subtle navy glow blob */}
       <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] bg-navy/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-gold/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-32 pb-20 min-h-screen flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-36 pb-20 min-h-screen flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* LEFT — text */}
         <div className="flex-1 max-w-2xl">
           <motion.div
@@ -85,51 +103,56 @@ export default function Hero({ onJoinClick }) {
             </a>
           </motion.div>
 
-          {/* trust line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-14 grid grid-cols-3 gap-6 max-w-md border-t border-mist pt-6"
+            className="mt-14 grid grid-cols-3 gap-6 max-w-lg border-t border-mist pt-6"
           >
-            <Stat num="8-18" label="Anos" />
+            <Stat num="4+" label="Anos" />
             <Stat num="3" label="Labs" />
-            <Stat num="1:1" label="Foco Individual" />
+            <Stat num="1:1" label="Individual ou Pequenos Grupos" />
           </motion.div>
         </div>
 
-        {/* RIGHT — logo + image */}
+        {/* RIGHT — carousel */}
         <div className="flex-1 w-full max-w-xl relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
             className="relative aspect-[4/5] w-full max-w-md mx-auto"
+            data-testid="hero-carousel"
           >
-            {/* Navy block with logo */}
-            <div className="absolute inset-0 bg-navy shadow-2xl overflow-hidden">
-              <img
-                src={FOOTBALL_IMG}
-                alt="Futebol"
-                className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-navy/70 to-navy-900" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-8">
+            <div className="absolute inset-0 overflow-hidden shadow-2xl bg-navy">
+              <AnimatePresence mode="sync">
                 <motion.img
-                  src={LOGO_URL}
-                  alt="PlayerLab"
-                  initial={{ y: 10 }}
-                  animate={{ y: 0 }}
-                  transition={{ repeat: Infinity, duration: 4, repeatType: "reverse" }}
-                  className="w-48 md:w-60 object-contain"
-                  data-testid="hero-logo"
+                  key={idx}
+                  src={SLIDES[idx].url}
+                  alt={SLIDES[idx].alt}
+                  initial={{ opacity: 0, scale: 1.08 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
-              </div>
-              <div className="absolute bottom-6 left-6 text-white/80 text-[10px] tracking-[0.3em] uppercase font-bold">
-                Academia · 2026
-              </div>
-              <div className="absolute top-6 right-6 text-gold text-[10px] tracking-[0.3em] uppercase font-bold">
-                / Player Development
+              </AnimatePresence>
+              {/* subtle navy vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent pointer-events-none" />
+
+              {/* slide indicators */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {SLIDES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIdx(i)}
+                    aria-label={`slide ${i + 1}`}
+                    data-testid={`hero-slide-dot-${i}`}
+                    className={`h-1.5 transition-all ${
+                      i === idx ? "w-8 bg-gold" : "w-1.5 bg-white/60"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
 
@@ -140,7 +163,6 @@ export default function Hero({ onJoinClick }) {
         </div>
       </div>
 
-      {/* bottom scroll cue */}
       <motion.a
         href="#sobre"
         initial={{ opacity: 0 }}
@@ -159,7 +181,7 @@ function Stat({ num, label }) {
   return (
     <div>
       <div className="font-heading text-4xl md:text-5xl font-black text-navy leading-none">{num}</div>
-      <div className="text-[10px] uppercase tracking-[0.25em] text-navy/50 mt-2 font-bold">{label}</div>
+      <div className="text-[10px] uppercase tracking-[0.25em] text-navy/50 mt-2 font-bold leading-tight">{label}</div>
     </div>
   );
 }

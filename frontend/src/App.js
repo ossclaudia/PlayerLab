@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import ThreeLabs from "@/components/site/ThreeLabs";
+import Staff from "@/components/site/Staff";
 import Location from "@/components/site/Location";
 import Contact from "@/components/site/Contact";
 import RegistrationDialog from "@/components/site/RegistrationDialog";
@@ -18,6 +19,7 @@ function HomePage() {
       <main>
         <Hero onJoinClick={onJoinClick} />
         <ThreeLabs />
+        <Staff />
         <Location />
         <Contact onJoinClick={onJoinClick} />
       </main>
