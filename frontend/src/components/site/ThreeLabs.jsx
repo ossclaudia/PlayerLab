@@ -6,108 +6,141 @@ const labs = [
   {
     id: "technique",
     num: "01",
-    title: "PlayerLab Technique",
-    desc: "Domina os fundamentos técnicos do futebol.",
+    title: "Technique",
+    sub: "Domínio Técnico",
+    desc: "Master the fundamentos. Trabalhamos cada detalhe do toque ao remate.",
     icon: Target,
-    skills: ["Passe", "Receção", "Controlo de bola", "Primeiro toque", "Drible", "Finalização", "Condução"],
+    skills: ["Passe", "Receção", "Controlo", "1.º toque", "Drible", "Finalização", "Condução"],
   },
   {
     id: "performance",
     num: "02",
-    title: "PlayerLab Performance",
-    desc: "Constrói velocidade, agilidade, potência e performance atlética.",
+    title: "Performance",
+    sub: "Performance Física",
+    desc: "Velocidade, agilidade e potência — os pilares atléticos do futebol moderno.",
     icon: Zap,
-    skills: ["Velocidade", "Agilidade", "Coordenação", "Mudança de direção", "Potência", "Prevenção de lesões"],
+    skills: ["Velocidade", "Agilidade", "Coordenação", "Mudança de direção", "Potência", "Prevenção"],
   },
   {
     id: "position",
     num: "03",
-    title: "PlayerLab Position",
-    desc: "Treina especificamente para as exigências da tua posição.",
+    title: "Position",
+    sub: "Treino por Posição",
+    desc: "Sessões adaptadas às exigências reais de cada posição em campo.",
     icon: Crosshair,
-    skills: ["Guarda-redes", "Defesas", "Médios", "Avançados", "Tática específica", "Situações de jogo"],
+    skills: ["Guarda-redes", "Defesas", "Médios", "Avançados", "Tática específica"],
   },
 ];
 
 export default function ThreeLabs() {
   return (
-    <section
-      id="labs"
-      className="relative py-24 md:py-40 bg-ink-800"
-      data-testid="three-labs-section"
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16"
-        >
-          <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-electric">
-            / Metodologia
-          </span>
-          <h2 className="mt-6 font-heading font-black uppercase text-white leading-[0.95] tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 5.5vw, 5rem)" }}>
-            Três Labs. <br />
-            <span className="text-zinc-500">Um só objetivo:</span> <br />
-            <span className="text-electric">Evolução.</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {labs.map((lab, i) => {
-            const Icon = lab.icon;
-            return (
-              <motion.div
-                key={lab.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: i * 0.15 }}
-                data-testid={`lab-card-${lab.id}`}
-                className="group relative bg-ink-900 border border-white/5 p-8 md:p-10 hover:border-electric/50 hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden"
-              >
-                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-electric/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                <div className="flex items-start justify-between mb-12 relative z-10">
-                  <span className="font-heading text-7xl font-black text-white/5 group-hover:text-electric/30 transition-colors leading-none">
-                    {lab.num}
-                  </span>
-                  <div className="w-14 h-14 bg-white/5 border border-white/10 group-hover:bg-electric group-hover:border-electric flex items-center justify-center transition-all duration-300">
-                    <Icon size={24} className="text-white" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <h3 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight text-white relative z-10">
-                  {lab.title}
-                </h3>
-                <p className="mt-4 text-zinc-400 font-body text-base leading-relaxed relative z-10">
-                  {lab.desc}
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-2 relative z-10">
-                  {lab.skills.map((s) => (
-                    <span
-                      key={s}
-                      className="text-[11px] tracking-wider uppercase px-3 py-1.5 bg-white/[0.03] border border-white/10 text-zinc-300 group-hover:border-electric/30 group-hover:text-white transition-all"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex items-center justify-between border-t border-white/5 pt-6 relative z-10">
-                  <span className="text-[11px] tracking-[0.3em] uppercase text-zinc-500">
-                    Programa Especializado
-                  </span>
-                  <ArrowUpRight size={20} className="text-zinc-500 group-hover:text-electric group-hover:rotate-45 transition-all" />
-                </div>
-              </motion.div>
-            );
-          })}
+    <>
+      {/* Small "Sobre" intro band before the labs */}
+      <section
+        id="sobre"
+        className="relative py-20 md:py-28 bg-cream"
+        data-testid="about-section"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 text-center">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-[11px] font-bold tracking-[0.3em] uppercase text-gold-600"
+          >
+            / Metodologia PlayerLab
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mt-6 font-heading font-black uppercase text-navy leading-[0.95] tracking-tight text-balance"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 4rem)" }}
+          >
+            Três áreas. <span className="text-gold-gradient">Um plano único</span> para cada jogador.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="mt-6 max-w-2xl mx-auto text-navy/70 text-base md:text-lg leading-relaxed font-body"
+          >
+            O PlayerLab complementa o treino de clube com trabalho individual
+            focado nos detalhes que fazem a diferença.
+          </motion.p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section
+        id="labs"
+        className="relative py-20 md:py-32 bg-cream-100"
+        data-testid="three-labs-section"
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {labs.map((lab, i) => {
+              const Icon = lab.icon;
+              return (
+                <motion.div
+                  key={lab.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, delay: i * 0.12 }}
+                  data-testid={`lab-card-${lab.id}`}
+                  className="group relative bg-white border border-mist p-8 md:p-10 hover:border-navy hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                >
+                  {/* subtle gold tint corner */}
+                  <div className="absolute -top-16 -right-16 w-40 h-40 bg-gold/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                  <div className="flex items-start justify-between mb-10 relative z-10">
+                    <span className="font-heading text-7xl font-black text-mist group-hover:text-gold/40 transition-colors leading-none">
+                      {lab.num}
+                    </span>
+                    <div className="w-14 h-14 bg-navy/5 border border-navy/10 group-hover:bg-navy group-hover:border-navy flex items-center justify-center transition-all duration-300">
+                      <Icon size={24} className="text-navy group-hover:text-gold transition-colors" strokeWidth={1.5} />
+                    </div>
+                  </div>
+
+                  <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-gold-600">
+                    PlayerLab
+                  </span>
+                  <h3 className="mt-1 font-heading text-4xl md:text-5xl font-black uppercase tracking-tight text-navy relative z-10">
+                    {lab.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-bold uppercase tracking-widest text-navy/50">
+                    {lab.sub}
+                  </p>
+                  <p className="mt-5 text-navy/70 font-body text-base leading-relaxed relative z-10">
+                    {lab.desc}
+                  </p>
+
+                  <div className="mt-8 flex flex-wrap gap-2 relative z-10">
+                    {lab.skills.map((s) => (
+                      <span
+                        key={s}
+                        className="text-[11px] tracking-wider uppercase px-3 py-1.5 bg-cream border border-mist text-navy/80 group-hover:border-navy/30 transition-all"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-10 flex items-center justify-between border-t border-mist pt-6 relative z-10">
+                    <span className="text-[11px] tracking-[0.3em] uppercase text-navy/50 font-bold">
+                      Programa Especializado
+                    </span>
+                    <ArrowUpRight size={20} className="text-navy/40 group-hover:text-gold-600 group-hover:rotate-45 transition-all" />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

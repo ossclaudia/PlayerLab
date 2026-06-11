@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Navigation } from "lucide-react";
+import { MapPin, Navigation, Clock } from "lucide-react";
 
 export default function Location() {
   return (
     <section
       id="localizacao"
-      className="relative py-24 md:py-40 bg-ink-900"
+      className="relative py-20 md:py-32 bg-cream"
       data-testid="location-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
@@ -18,43 +18,32 @@ export default function Location() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5"
           >
-            <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-electric">
-              / Localização
+            <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-gold-600">
+              / Onde treinamos
             </span>
-            <h2 className="mt-6 font-heading font-black uppercase text-white leading-[0.95] tracking-tight"
+            <h2 className="mt-6 font-heading font-black uppercase text-navy leading-[0.95] tracking-tight"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
               Campos de <br />
-              <span className="text-electric">Sanguedo.</span>
+              <span className="text-gold-gradient">Sanguedo.</span>
             </h2>
 
-            <p className="mt-8 text-zinc-400 font-body text-base md:text-lg leading-relaxed max-w-md">
-              Instalações desportivas modernas com relva natural e sintética,
-              espaços técnicos dedicados e ambiente preparado para o desenvolvimento
+            <p className="mt-8 text-navy/70 font-body text-base md:text-lg leading-relaxed max-w-md">
+              Instalações modernas com relva natural e sintética, espaços
+              técnicos dedicados e ambiente preparado para desenvolvimento
               de alto rendimento.
             </p>
 
-            <div className="mt-10 space-y-4">
-              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
-                <MapPin size={20} className="text-electric mt-1" />
-                <div>
-                  <div className="text-xs uppercase tracking-[0.25em] text-zinc-500">Morada</div>
-                  <div className="text-white font-body mt-1">Campos de Sanguedo, Santa Maria da Feira, Portugal</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
-                <Phone size={20} className="text-electric mt-1" />
-                <div>
-                  <div className="text-xs uppercase tracking-[0.25em] text-zinc-500">Telefone</div>
-                  <div className="text-white font-body mt-1">+351 910 000 000</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
-                <Mail size={20} className="text-electric mt-1" />
-                <div>
-                  <div className="text-xs uppercase tracking-[0.25em] text-zinc-500">Email</div>
-                  <div className="text-white font-body mt-1">geral@playerlab.pt</div>
-                </div>
-              </div>
+            <div className="mt-10 space-y-1">
+              <Row
+                icon={MapPin}
+                title="Morada"
+                value="Campos de Sanguedo, Santa Maria da Feira, Portugal"
+              />
+              <Row
+                icon={Clock}
+                title="Horários"
+                value="Seg-Sex · 17h-21h  ·  Sáb · 09h-13h"
+              />
             </div>
 
             <a
@@ -62,7 +51,7 @@ export default function Location() {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="location-directions-btn"
-              className="mt-10 inline-flex items-center gap-2 bg-transparent border border-white/30 hover:border-electric hover:text-electric text-white px-6 py-3 font-heading text-sm uppercase tracking-widest transition-all"
+              className="mt-10 inline-flex items-center gap-2 bg-navy text-white px-6 py-4 font-heading text-sm uppercase tracking-widest hover:bg-navy-800 hover:shadow-xl transition-all"
             >
               <Navigation size={16} />
               Como chegar
@@ -76,21 +65,35 @@ export default function Location() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7 relative"
           >
-            <div className="relative aspect-[4/3] overflow-hidden border border-white/10">
+            <div className="relative aspect-[4/3] overflow-hidden border border-mist shadow-xl bg-white">
               <iframe
                 title="Mapa Sanguedo"
                 src="https://www.google.com/maps?q=Sanguedo+Santa+Maria+da+Feira+Portugal&output=embed"
-                className="absolute inset-0 w-full h-full grayscale contrast-125 invert-[0.92] hue-rotate-180"
+                className="absolute inset-0 w-full h-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 data-testid="location-map"
               />
             </div>
-            <div className="absolute -top-4 -left-4 w-20 h-20 border-l-2 border-t-2 border-electric pointer-events-none" />
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 border-r-2 border-b-2 border-electric pointer-events-none" />
+            <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-gold pointer-events-none" />
+            <div className="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-gold pointer-events-none" />
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Row({ icon: Icon, title, value }) {
+  return (
+    <div className="flex items-start gap-4 border-t border-mist py-4">
+      <div className="w-10 h-10 bg-navy/5 flex items-center justify-center shrink-0">
+        <Icon size={18} className="text-navy" />
+      </div>
+      <div>
+        <div className="text-[10px] uppercase tracking-[0.25em] text-navy/50 font-bold">{title}</div>
+        <div className="text-navy font-body mt-1">{value}</div>
+      </div>
+    </div>
   );
 }
