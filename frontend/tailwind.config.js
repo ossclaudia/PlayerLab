@@ -69,4 +69,22 @@ module.exports = {
     }
   },
   plugins: [require("tailwindcss-animate")],
+  safelist: [
+    // Cores custom usadas em estados hover/group-hover — protege contra purge agressivo em produção
+    "bg-navy", "bg-navy-800", "bg-navy-700", "bg-navy-600", "bg-navy/5", "bg-navy/10",
+    "bg-gold", "bg-gold-600", "bg-gold-400", "bg-gold/10", "bg-gold/15", "bg-gold/40",
+    "bg-cream", "bg-cream-100", "bg-cream-200",
+    "text-navy", "text-gold", "text-gold-600", "text-mist", "text-mist-400",
+    "border-navy", "border-gold", "border-mist",
+    "hover:bg-navy", "hover:bg-navy-800", "hover:bg-cream", "hover:bg-cream-200",
+    "hover:border-navy", "hover:border-gold",
+    "hover:text-navy", "hover:text-gold", "hover:text-gold-600", "hover:text-white",
+    "hover:-translate-y-2", "hover:-translate-y-3",
+    "hover:shadow-xl", "hover:shadow-2xl",
+    "group-hover:bg-navy", "group-hover:bg-gold",
+    "group-hover:border-navy", "group-hover:border-gold",
+    "group-hover:text-navy", "group-hover:text-gold", "group-hover:text-white",
+    "group-hover:opacity-100", "group-hover:w-full", "group-hover:rotate-45",
+    "group-hover:translate-x-1", "group-hover:grayscale-0",
+  ],
 };
