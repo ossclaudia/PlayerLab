@@ -24,7 +24,6 @@ export default function Navbar({ onJoinClick }) {
   const goTo = (e, href) => {
     e.preventDefault();
     setOpen(false);
-    // pequeno timeout para deixar o menu fechar antes do scroll
     setTimeout(() => {
       const el = document.querySelector(href);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -36,8 +35,8 @@ export default function Navbar({ onJoinClick }) {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-cream-100/85 backdrop-blur-xl border-b border-mist shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy ${
+        scrolled ? "shadow-[0_8px_30px_rgba(0,0,0,0.25)] border-b border-white/5" : ""
       }`}
       data-testid="navbar"
     >
@@ -49,8 +48,8 @@ export default function Navbar({ onJoinClick }) {
           data-testid="navbar-logo"
         >
           <Logo size={48} />
-          <span className="font-heading text-2xl md:text-3xl font-black tracking-tight uppercase text-navy leading-none">
-            Player<span className="text-gold-600">Lab</span>
+          <span className="font-heading text-2xl md:text-3xl font-black tracking-tight uppercase text-white leading-none">
+            Player<span className="text-gold">Lab</span>
           </span>
         </a>
 
@@ -60,7 +59,7 @@ export default function Navbar({ onJoinClick }) {
               key={l.href}
               href={l.href}
               onClick={(e) => goTo(e, l.href)}
-              className="text-navy/70 text-sm font-semibold uppercase tracking-[0.18em] hover:text-navy transition-colors"
+              className="text-white/70 text-sm font-semibold uppercase tracking-[0.18em] hover:text-white transition-colors"
               data-testid={`nav-link-${l.label.toLowerCase().replace(/\s/g, "-")}`}
             >
               {l.label}
@@ -72,13 +71,13 @@ export default function Navbar({ onJoinClick }) {
           <button
             onClick={onJoinClick}
             data-testid="navbar-join-btn"
-            className="hidden md:inline-flex items-center bg-navy text-white px-5 py-3 font-heading text-base uppercase tracking-widest hover:bg-navy-800 hover:shadow-lg transition-all"
+            className="hidden md:inline-flex items-center bg-cream-100 text-navy px-5 py-3 font-heading text-base uppercase tracking-widest hover:bg-white hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] transition-all"
           >
             Inscreve-te
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-navy"
+            className="lg:hidden text-white"
             data-testid="navbar-mobile-toggle"
             aria-label="menu"
           >
@@ -93,7 +92,7 @@ export default function Navbar({ onJoinClick }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-cream-100 border-t border-mist overflow-hidden"
+            className="lg:hidden bg-navy border-t border-white/10 overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-5">
               {links.map((l) => (
@@ -101,7 +100,7 @@ export default function Navbar({ onJoinClick }) {
                   key={l.href}
                   href={l.href}
                   onClick={(e) => goTo(e, l.href)}
-                  className="text-navy text-lg font-semibold uppercase tracking-[0.18em]"
+                  className="text-white/90 text-lg font-semibold uppercase tracking-[0.18em]"
                   data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s/g, "-")}`}
                 >
                   {l.label}
@@ -109,7 +108,7 @@ export default function Navbar({ onJoinClick }) {
               ))}
               <button
                 onClick={() => { setOpen(false); onJoinClick(); }}
-                className="mt-2 bg-navy text-white px-5 py-3 font-heading text-base uppercase tracking-widest"
+                className="mt-2 bg-cream-100 text-navy px-5 py-3 font-heading text-base uppercase tracking-widest"
                 data-testid="navbar-mobile-join-btn"
               >
                 Inscreve-te
