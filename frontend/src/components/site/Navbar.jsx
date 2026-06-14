@@ -71,7 +71,7 @@ export default function Navbar({ onJoinClick }) {
           <button
             onClick={onJoinClick}
             data-testid="navbar-join-btn"
-            className="hidden md:inline-flex items-center bg-cream-100 text-navy px-5 py-3 font-heading text-base uppercase tracking-widest hover:bg-white hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] transition-all"
+            className="hidden md:inline-flex items-center bg-cream text-navy px-5 py-3 font-heading text-base uppercase tracking-widest hover:bg-cream-200 hover:shadow-[0_0_25px_rgba(247,245,240,0.25)] transition-all"
           >
             Inscreve-te
           </button>
@@ -108,7 +108,7 @@ export default function Navbar({ onJoinClick }) {
               ))}
               <button
                 onClick={() => { setOpen(false); onJoinClick(); }}
-                className="mt-2 bg-cream-100 text-navy px-5 py-3 font-heading text-base uppercase tracking-widest"
+                className="mt-2 bg-cream text-navy px-5 py-3 font-heading text-base uppercase tracking-widest"
                 data-testid="navbar-mobile-join-btn"
               >
                 Inscreve-te
