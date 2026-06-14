@@ -5,8 +5,8 @@ import Logo from "./Logo";
 
 const links = [
   { href: "#sobre", label: "A Academia" },
-  { href: "#staff", label: "Staff" },
   { href: "#labs", label: "Os Labs" },
+  { href: "#staff", label: "Staff" },
   { href: "#localizacao", label: "Localização" },
   { href: "#contactos", label: "Contactos" },
 ];
@@ -21,6 +21,16 @@ export default function Navbar({ onJoinClick }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const goTo = (e, href) => {
+    e.preventDefault();
+    setOpen(false);
+    // pequeno timeout para deixar o menu fechar antes do scroll
+    setTimeout(() => {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  };
+
   return (
     <motion.header
       initial={{ y: -40, opacity: 0 }}
@@ -32,8 +42,13 @@ export default function Navbar({ onJoinClick }) {
       data-testid="navbar"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-20">
-        <a href="#hero" className="flex items-center gap-3" data-testid="navbar-logo">
-          <Logo size={48} color="#0E152C" />
+        <a
+          href="#hero"
+          onClick={(e) => goTo(e, "#hero")}
+          className="flex items-center gap-3"
+          data-testid="navbar-logo"
+        >
+          <Logo size={48} />
           <span className="font-heading text-2xl md:text-3xl font-black tracking-tight uppercase text-navy leading-none">
             Player<span className="text-gold-600">Lab</span>
           </span>
@@ -44,6 +59,7 @@ export default function Navbar({ onJoinClick }) {
             <a
               key={l.href}
               href={l.href}
+              onClick={(e) => goTo(e, l.href)}
               className="text-navy/70 text-sm font-semibold uppercase tracking-[0.18em] hover:text-navy transition-colors"
               data-testid={`nav-link-${l.label.toLowerCase().replace(/\s/g, "-")}`}
             >
@@ -84,8 +100,9 @@ export default function Navbar({ onJoinClick }) {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => goTo(e, l.href)}
                   className="text-navy text-lg font-semibold uppercase tracking-[0.18em]"
+                  data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s/g, "-")}`}
                 >
                   {l.label}
                 </a>

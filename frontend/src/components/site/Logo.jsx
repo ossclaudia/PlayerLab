@@ -1,30 +1,23 @@
 import React from "react";
 
+// Logo a cores (transparente) — sem o texto "PlayerLab Academy"
 export const LOGO_URL =
-  "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/kvhyae7u_Logo%20-%20C%C3%B3pia.png";
+  "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/r07nck9w_Logo%20-%20Sem%20letras.png";
 
-/**
- * Logo painted via CSS mask — works on any background.
- * `color` accepts any CSS color (e.g. "#0E152C", "white").
- */
-export default function Logo({ size = 48, color = "#0E152C", className = "" }) {
+// Logo completo com texto "PlayerLab Academy"
+export const LOGO_FULL_URL =
+  "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/cfhgct1n_Logo%20sem%20fundo.png";
+
+export default function Logo({ size = 56, className = "" }) {
   return (
-    <div
-      role="img"
-      aria-label="PlayerLab"
+    <img
+      src={LOGO_URL}
+      alt="PlayerLab"
       className={className}
       style={{
         width: size,
         height: size,
-        backgroundColor: color,
-        WebkitMaskImage: `url(${LOGO_URL})`,
-        maskImage: `url(${LOGO_URL})`,
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
+        objectFit: "contain",
         flexShrink: 0,
       }}
     />

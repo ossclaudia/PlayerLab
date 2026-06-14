@@ -55,7 +55,7 @@ export default function Contact({ onJoinClick }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-4 mb-6">
-              <Logo size={88} color="#FFFFFF" />
+              <Logo size={88} />
               <span className="font-heading text-4xl md:text-5xl font-black tracking-tight uppercase leading-none">
                 Player<span className="text-gold">Lab</span>
               </span>
@@ -72,8 +72,8 @@ export default function Contact({ onJoinClick }) {
             </h4>
             <ul className="space-y-3 font-body text-sm">
               <li><a href="#sobre" className="text-white/70 hover:text-white transition-colors">A Academia</a></li>
-              <li><a href="#staff" className="text-white/70 hover:text-white transition-colors">Staff</a></li>
               <li><a href="#labs" className="text-white/70 hover:text-white transition-colors">Os Labs</a></li>
+              <li><a href="#staff" className="text-white/70 hover:text-white transition-colors">Staff</a></li>
               <li><a href="#localizacao" className="text-white/70 hover:text-white transition-colors">Localização</a></li>
             </ul>
           </div>
@@ -101,8 +101,8 @@ export default function Contact({ onJoinClick }) {
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Instagram size={16} className="text-gold shrink-0" />
-                <a href="https://instagram.com/playerlab" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  @playerlab
+                <a href="https://instagram.com/playerlab_academy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  @playerlab_academy
                 </a>
               </li>
             </ul>

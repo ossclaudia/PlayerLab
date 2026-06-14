@@ -35,10 +35,6 @@ export default function Hero({ onJoinClick }) {
       className="relative min-h-screen w-full overflow-hidden bg-cream-100"
       data-testid="hero-section"
     >
-      <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
-      <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] bg-navy/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-gold/10 rounded-full blur-3xl pointer-events-none" />
-
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-36 pb-20 min-h-screen flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* LEFT — text */}
         <div className="flex-1 max-w-2xl">
@@ -64,7 +60,7 @@ export default function Hero({ onJoinClick }) {
             data-testid="hero-headline"
           >
             Desenvolve <br />
-            o teu <span className="text-gold-gradient">jogo.</span>
+            o teu <span className="text-gold-600">jogo.</span>
           </motion.h1>
 
           <motion.p
@@ -137,10 +133,8 @@ export default function Hero({ onJoinClick }) {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>
-              {/* subtle navy vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent pointer-events-none" />
 
-              {/* slide indicators */}
               <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                 {SLIDES.map((_, i) => (
                   <button
@@ -156,23 +150,11 @@ export default function Hero({ onJoinClick }) {
               </div>
             </div>
 
-            {/* gold corner accents */}
             <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-gold" />
             <div className="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-gold" />
           </motion.div>
         </div>
       </div>
-
-      <motion.a
-        href="#sobre"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-navy/40 hover:text-navy transition-colors"
-      >
-        <span className="text-[10px] tracking-[0.3em] uppercase font-bold">scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-navy/40 to-transparent" />
-      </motion.a>
     </section>
   );
 }

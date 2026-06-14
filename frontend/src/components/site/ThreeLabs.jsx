@@ -90,12 +90,13 @@ export default function ThreeLabs() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: i * 0.12 }}
                   data-testid={`lab-card-${lab.id}`}
-                  className="group relative bg-white border border-mist p-6 md:p-8 hover:border-navy hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  className="group relative bg-white border border-mist p-6 md:p-8 hover:border-gold hover:-translate-y-3 hover:shadow-[0_30px_60px_-15px_rgba(14,21,44,0.25)] transition-all duration-500 cursor-pointer overflow-hidden"
                 >
-                  <div className="absolute -top-16 -right-16 w-40 h-40 bg-gold/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -top-16 -right-16 w-40 h-40 bg-gold/15 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold group-hover:w-full transition-all duration-700" />
 
                   <div className="flex items-start justify-between mb-10 relative z-10">
-                    <span className="font-heading text-7xl font-black text-mist group-hover:text-gold/40 transition-colors leading-none">
+                    <span className="font-heading text-7xl font-black text-mist group-hover:text-gold transition-colors leading-none">
                       {lab.num}
                     </span>
                     <div className="w-14 h-14 bg-navy/5 border border-navy/10 group-hover:bg-navy group-hover:border-navy flex items-center justify-center transition-all duration-300 shrink-0">

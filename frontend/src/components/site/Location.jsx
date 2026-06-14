@@ -2,6 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Navigation, Clock } from "lucide-react";
 
+const ADDRESS_FULL = "R. Prof. Domingos Henriques Ferreira 390 646, 4505-646 Sanguedo";
+const MAP_QUERY = encodeURIComponent(ADDRESS_FULL);
+
 export default function Location() {
   return (
     <section
@@ -24,7 +27,7 @@ export default function Location() {
             <h2 className="mt-6 font-heading font-black uppercase text-navy leading-[0.95] tracking-tight"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
               Campos de <br />
-              <span className="text-gold-gradient">Sanguedo.</span>
+              <span className="text-gold-600">Sanguedo.</span>
             </h2>
 
             <p className="mt-8 text-navy/70 font-body text-base md:text-lg leading-relaxed max-w-md">
@@ -37,17 +40,17 @@ export default function Location() {
               <Row
                 icon={MapPin}
                 title="Morada"
-                value="Campos de Sanguedo, Santa Maria da Feira, Portugal"
+                value={ADDRESS_FULL}
               />
               <Row
                 icon={Clock}
                 title="Horários"
-                value="Seg-Dom · 9h-19h"
+                value="Seg-Sáb · 9h-19h"
               />
             </div>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Sanguedo+Santa+Maria+da+Feira"
+              href={`https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="location-directions-btn"
@@ -67,8 +70,8 @@ export default function Location() {
           >
             <div className="relative aspect-[4/3] overflow-hidden border border-mist shadow-xl bg-white">
               <iframe
-                title="Mapa Sanguedo"
-                src="https://www.google.com/maps?q=Sanguedo+Santa+Maria+da+Feira+Portugal&output=embed"
+                title="Mapa Campos de Sanguedo"
+                src={`https://www.google.com/maps?q=${MAP_QUERY}&output=embed`}
                 className="absolute inset-0 w-full h-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
