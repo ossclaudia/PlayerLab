@@ -67,7 +67,7 @@ export default function ThreeLabs() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-6 max-w-2xl mx-auto text-navy/70 text-base md:text-lg leading-relaxed font-body"
           >
-            O PlayerLab complementa o treino de clube com trabalho individual
+            O PlayerLab complementa o treino do teu clube com trabalho individual
             focado nos detalhes que fazem a diferença.
           </motion.p>
         </div>

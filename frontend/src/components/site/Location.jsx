@@ -26,8 +26,8 @@ export default function Location() {
             </span>
             <h2 className="mt-6 font-heading font-black uppercase text-navy leading-[0.95] tracking-tight"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
-              Campos de <br />
-              <span className="text-gold-600">Sanguedo.</span>
+              Campos do <br />
+              <span className="text-gold-600">ADC Sanguedo.</span>
             </h2>
 
             <p className="mt-8 text-navy/70 font-body text-base md:text-lg leading-relaxed max-w-md">
