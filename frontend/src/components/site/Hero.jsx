@@ -4,20 +4,20 @@ import { ArrowRight, MapPin } from "lucide-react";
 
 const SLIDES = [
   {
-    url: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80",
-    alt: "Estádio de futebol à noite",
+    url: "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/0tpr3bgs_sanguedo_edit_035.JPG",
+    alt: "Campo da ADC Sanguedo visto da baliza",
   },
   {
-    url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80",
-    alt: "Jogador a chutar a bola",
+    url: "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/zolj8j4x_sanguedo_edit_020.JPG",
+    alt: "Bola no ponto de grande penalidade",
   },
   {
-    url: "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1200&q=80",
-    alt: "Treino de futebol",
+    url: "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/jts6v8za_sanguedo_edit_023.JPG",
+    alt: "Bancada e campo da ADC Sanguedo",
   },
   {
-    url: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80",
-    alt: "Atletas em corrida",
+    url: "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/zamfavz6_sanguedo_edit_026.JPG",
+    alt: "Balizas de treino no campo",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function Hero({ onJoinClick }) {
           >
             <MapPin size={14} className="text-gold-600" />
             <span className="text-xs font-bold tracking-[0.25em] uppercase text-navy">
-              Campos de Sanguedo · Portugal
+              Campos da ADC Sanguedo · Portugal
             </span>
           </motion.div>
 

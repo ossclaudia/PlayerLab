@@ -1,11 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { PlayCircle } from "lucide-react";
 
-// Placeholder video — substitui quando tiveres o vídeo do João Durães
-const VIDEO_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
-const VIDEO_POSTER =
-  "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1600&q=80";
+const COACH_PHOTO =
+  "https://customer-assets.emergentagent.com/job_develop-your-game/artifacts/7qde8jy5_sanguedo_edit_042.JPG";
 
 export default function Staff() {
   return (
@@ -36,28 +33,24 @@ export default function Staff() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Video */}
+          {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 relative"
-            data-testid="staff-video-wrapper"
+            data-testid="staff-photo-wrapper"
           >
-            <div className="relative aspect-video overflow-hidden bg-navy shadow-2xl">
-              <video
-                controls
-                poster={VIDEO_POSTER}
+            <div className="relative aspect-[4/3] overflow-hidden bg-navy shadow-2xl">
+              <img
+                src={COACH_PHOTO}
+                alt="João Durães"
                 className="absolute inset-0 w-full h-full object-cover"
-                data-testid="staff-video"
-              >
-                <source src={VIDEO_URL} type="video/mp4" />
-                O teu browser não suporta vídeo HTML5.
-              </video>
-              <div className="absolute top-4 left-4 bg-navy/80 backdrop-blur-md px-3 py-1.5 flex items-center gap-2 text-white text-[10px] uppercase tracking-[0.3em] font-bold pointer-events-none">
-                <PlayCircle size={12} className="text-gold" />
-                Player Profile
+                data-testid="staff-photo"
+              />
+              <div className="absolute top-4 left-4 bg-navy/80 backdrop-blur-md px-3 py-1.5 text-white text-[10px] uppercase tracking-[0.3em] font-bold pointer-events-none">
+                / Coach
               </div>
             </div>
             <div className="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-gold pointer-events-none" />
@@ -73,7 +66,7 @@ export default function Staff() {
             className="lg:col-span-5"
           >
             <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-gold-600">
-              / Coach
+              / Head Coach
             </span>
             <h3
               className="mt-4 font-heading font-black uppercase text-navy leading-[0.9] tracking-tight"
