@@ -9,7 +9,7 @@ export default function Location() {
   return (
     <section
       id="localizacao"
-      className="relative py-20 md:py-32 bg-cream"
+      className="relative py-20 md:py-32 bg-cream overflow-hidden"
       data-testid="location-section"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">

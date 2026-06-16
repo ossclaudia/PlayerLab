@@ -75,7 +75,7 @@ export default function ThreeLabs() {
 
       <section
         id="labs"
-        className="relative py-20 md:py-32 bg-cream-100"
+        className="relative py-20 md:py-32 bg-cream-100 overflow-hidden"
         data-testid="three-labs-section"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
